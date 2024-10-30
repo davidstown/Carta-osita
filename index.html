@@ -6,14 +6,8 @@
   <title>Aimbridge Latam - Sistemas Noroeste</title>
   
   <!-- Incluye el SDK actualizado de EmailJS -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  
-  <script>
-    window.addEventListener("load", function() {
-      // Inicialización de EmailJS después de que la página esté completamente cargada
-      emailjs.init("FI1vQRrXRKzliM5Sl"); // Reemplaza con tu User ID de EmailJS
-      console.log("EmailJS inicializado correctamente");
-    });
+  <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
   </script>
 
   <style>
@@ -152,6 +146,13 @@
   </footer>
 
   <script>
+    (function(){
+      emailjs.init({
+        publicKey: "FI1vQRrXRKzliM5Sl" // Reemplaza con tu clave pública de EmailJS
+      });
+      console.log("EmailJS inicializado correctamente");
+    })();
+
     let tickets = [];
     let ticketNumber = 1;
 
@@ -250,16 +251,8 @@
       tickets[index].estado = nuevoEstado;
       mostrarTickets();
     }
-
-    setInterval(() => {
-      tickets.forEach(ticket => {
-        if (ticket.estado === 'Abierto') {
-          ticket.tiempo += 1;
-        }
-      });
-      mostrarTickets();
-    }, 1000);
   </script>
-
 </body>
 </html>
+
+    
