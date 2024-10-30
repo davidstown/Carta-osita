@@ -1,203 +1,265 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aimbridge Latam - Sistemas Noroeste</title>
-    
-    <!-- Incluye el SDK actualizado de EmailJS -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    
-    <script>
-        window.addEventListener("load", function() {
-            // Inicialización de EmailJS después de que la página esté completamente cargada
-            emailjs.init("FI1vQRrXRKzliM5Sl"); // Reemplaza con tu User ID de EmailJS
-            console.log("EmailJS inicializado correctamente");
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aimbridge Latam - Sistemas Noroeste</title>
+  
+  <!-- Incluye el SDK actualizado de EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  
+  <script>
+    window.addEventListener("load", function() {
+      // Inicialización de EmailJS después de que la página esté completamente cargada
+      emailjs.init("FI1vQRrXRKzliM5Sl"); // Reemplaza con tu User ID de EmailJS
+      console.log("EmailJS inicializado correctamente");
+    });
+  </script>
 
-    <style>
-        /* Estilos de la interfaz */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f7;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        /* Más estilos... */
-    </style>
+  <style>
+    /* Estilos de la interfaz */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #0071e3;
+      padding: 10px;
+      width: 100%;
+      color: white;
+    }
+
+    header img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    .ticket-form, .ticket-list {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .ticket-form input, .ticket-form select, .ticket-form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .ticket-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .ticket-list th, .ticket-list td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .ticket-list th {
+      background-color: #0071e3;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      font-size: 0.9em;
+      color: #666;
+      position: fixed;
+      bottom: 0;
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <header>
     <img src="https://cdn.theorg.com/d1120b4b-1653-4847-8625-3e965ac5f08f_thumb.jpg" alt="Aimbridge Latam Logo" />
     <h1>Aimbridge Latam - Sistemas Noroeste</h1>
-</header>
+  </header>
 
-<div class="ticket-form">
+  <div class="ticket-form">
     <h2>Crear Nuevo Ticket</h2>
     <form id="ticketForm">
-        <label for="hotel">Hotel:</label>
-        <select id="hotel" required>
-            <option value="CJSAT">CJSAT</option>
-            <option value="CUUCY">CUUCY</option>
-            <option value="CUUDE">CUUDE</option>
-            <option value="CUUMI">CUUMI</option>
-            <option value="CUUMX">CUUMX</option>
-            <option value="CUUWY">CUUWY</option>
-            <option value="JUAMI">JUAMI</option>
-            <option value="JUAZO">JUAZO</option>
-        </select>
-        <input type="text" id="problema" placeholder="Tipo de problema" required>
-        <input type="text" id="descripcion" placeholder="Descripción" required>
-        <input type="text" id="nombre" placeholder="Nombre de quien reporta" required>
-        <input type="tel" id="telefono" placeholder="Número de teléfono" pattern="[0-9]{10}" required>
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-        <button type="button" onclick="crearTicket()">Crear Ticket</button>
+      <label for="hotel">Hotel:</label>
+      <select id="hotel" required>
+        <option value="CJSAT">CJSAT</option>
+        <option value="CUUCY">CUUCY</option>
+        <option value="CUUDE">CUUDE</option>
+        <option value="CUUMI">CUUMI</option>
+        <option value="CUUMX">CUUMX</option>
+        <option value="CUUWY">CUUWY</option>
+        <option value="JUAMI">JUAMI</option>
+        <option value="JUAZO">JUAZO</option>
+      </select>
+      <input type="text" id="problema" placeholder="Tipo de problema" required>
+      <input type="text" id="descripcion" placeholder="Descripción" required>
+      <input type="text" id="nombre" placeholder="Nombre de quien reporta" required>
+      <input type="tel" id="telefono" placeholder="Número de teléfono" pattern="[0-9]{10}" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <button type="button" onclick="crearTicket()">Crear Ticket</button>
     </form>
-</div>
+  </div>
 
-<div class="ticket-list">
+  <div class="ticket-list">
     <h2>Lista de Tickets</h2>
     <table id="ticketTable">
-        <thead>
-            <tr>
-                <th>Hotel</th>
-                <th>Problema</th>
-                <th>Descripción</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Correo Electrónico</th>
-                <th>Tiempo de Espera</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Hotel</th>
+          <th>Problema</th>
+          <th>Descripción</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Correo Electrónico</th>
+          <th>Tiempo de Espera</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
     </table>
-</div>
+  </div>
 
-<footer>
+  <footer>
     Aimbridge Latam todos los derechos reservados creado por Ing. David Torres.
-</footer>
+  </footer>
 
-<script>
+  <script>
     let tickets = [];
     let ticketNumber = 1;
 
     function crearTicket() {
-        const hotel = document.getElementById('hotel').value;
-        const problema = document.getElementById('problema').value;
-        const descripcion = document.getElementById('descripcion').value;
-        const nombre = document.getElementById('nombre').value;
-        const telefono = document.getElementById('telefono').value;
-        const email = document.getElementById('email').value;
+      const hotel = document.getElementById('hotel').value;
+      const problema = document.getElementById('problema').value;
+      const descripcion = document.getElementById('descripcion').value;
+      const nombre = document.getElementById('nombre').value;
+      const telefono = document.getElementById('telefono').value;
+      const email = document.getElementById('email').value;
 
-        const ticket = {
-            id: `00${ticketNumber}`.slice(-2),
-            hotel,
-            problema,
-            descripcion,
-            nombre,
-            telefono,
-            email,
-            estado: 'Abierto',
-            tiempo: 0
-        };
+      const ticket = {
+        id: `00${ticketNumber}`.slice(-2),
+        hotel,
+        problema,
+        descripcion,
+        nombre,
+        telefono,
+        email,
+        estado: 'Abierto',
+        tiempo: 0
+      };
 
-        tickets.push(ticket);
-        mostrarTickets();
-        enviarNotificacion(ticket);
-        enviarCorreo(ticket);
-        ticketNumber++;
-        document.getElementById('ticketForm').reset();
+      tickets.push(ticket);
+      mostrarTickets();
+      enviarNotificacion(ticket);
+      enviarCorreo(ticket);
+      ticketNumber++;
+      document.getElementById('ticketForm').reset();
     }
 
     function mostrarTickets() {
-        const ticketTableBody = document.getElementById('ticketTable').querySelector('tbody');
-        ticketTableBody.innerHTML = '';
+      const ticketTableBody = document.getElementById('ticketTable').querySelector('tbody');
+      ticketTableBody.innerHTML = '';
 
-        tickets.forEach((ticket, index) => {
-            const row = document.createElement('tr');
-            
-            row.innerHTML = `
-                <td>${ticket.hotel}</td>
-                <td>${ticket.problema}</td>
-                <td>${ticket.descripcion}</td>
-                <td>${ticket.nombre}</td>
-                <td>${ticket.telefono}</td>
-                <td>${ticket.email}</td>
-                <td>${formatTiempo(ticket.tiempo)}</td>
-                <td>${ticket.estado}</td>
-                <td>
-                    <button onclick="actualizarEstado(${index}, 'En Proceso')">En Proceso</button>
-                    <button onclick="actualizarEstado(${index}, 'Cerrado')">Cerrar</button>
-                </td>
-            `;
+      tickets.forEach((ticket, index) => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+          <td>${ticket.hotel}</td>
+          <td>${ticket.problema}</td>
+          <td>${ticket.descripcion}</td>
+          <td>${ticket.nombre}</td>
+          <td>${ticket.telefono}</td>
+          <td>${ticket.email}</td>
+          <td>${formatTiempo(ticket.tiempo)}</td>
+          <td>${ticket.estado}</td>
+          <td>
+            <button onclick="actualizarEstado(${index}, 'En Proceso')">En Proceso</button>
+            <button onclick="actualizarEstado(${index}, 'Cerrado')">Cerrar</button>
+          </td>
+        `;
 
-            ticketTableBody.appendChild(row);
-        });
+        ticketTableBody.appendChild(row);
+      });
     }
 
     function enviarNotificacion(ticket) {
-        const message = `Alerta de ticket: número ${ticket.id}... Has entrado a la lista de espera. Por favor sé paciente y te notificaremos cuando se dé seguimiento.\nDescripción del problema: ${ticket.descripcion}`;
+      const message = `Alerta de ticket: número ${ticket.id}... Has entrado a la lista de espera. Por favor sé paciente y te notificaremos cuando se dé seguimiento.\nDescripción del problema: ${ticket.descripcion}`;
 
-        alert(`Notificación:\n${message}`);
+      alert(`Notificación:\n${message}`);
 
-        const whatsappLink = `https://wa.me/52${ticket.telefono}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappLink, "_blank");
+      const whatsappLink = `https://wa.me/52${ticket.telefono}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappLink, "_blank");
     }
 
     function enviarCorreo(ticket) {
-        if (!ticket.email || !/\S+@\S+\.\S+/.test(ticket.email)) {
-            console.error("Correo electrónico no válido");
-            return;
-        }
-        
-        console.log("emailjs está definido:", typeof emailjs !== "undefined"); // Verificación
-
-        emailjs.send("service_dkymx7a", "template_bm5vpci", {
-            ticket_id: ticket.id,
-            to_email: ticket.email,
-            hotel: ticket.hotel,
-            problema: ticket.problema,
-            descripcion: ticket.descripcion,
-            nombre: ticket.nombre,
-            telefono: ticket.telefono
-        }).then((response) => {
-            console.log("Correo enviado correctamente", response.status, response.text);
-        }).catch((error) => {
-            console.error("Error al enviar correo:", error);
-        });
+      if (!ticket.email || !/\S+@\S+\.\S+/.test(ticket.email)) {
+          console.error("Correo electrónico no válido");
+          return;
+      }
+      
+      emailjs.send("service_dkymx7a", "template_bm5vpci", {
+          ticket_id: ticket.id,
+          to_email: ticket.email,
+          hotel: ticket.hotel,
+          problema: ticket.problema,
+          descripcion: ticket.descripcion,
+          nombre: ticket.nombre,
+          telefono: ticket.telefono
+      }).then((response) => {
+          console.log("Correo enviado correctamente", response.status, response.text);
+      }).catch((error) => {
+          console.error("Error al enviar correo:", error);
+      });
     }
 
     function formatTiempo(segundos) {
-        const horas = Math.floor(segundos / 3600);
-        const minutos = Math.floor((segundos % 3600) / 60);
-        const seg = segundos % 60;
-        return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
+      const horas = Math.floor(segundos / 3600);
+      const minutos = Math.floor((segundos % 3600) / 60);
+      const seg = segundos % 60;
+      return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
     }
 
     function actualizarEstado(index, nuevoEstado) {
-        tickets[index].estado = nuevoEstado;
-        mostrarTickets();
+      tickets[index].estado = nuevoEstado;
+      mostrarTickets();
     }
 
     setInterval(() => {
-        tickets.forEach(ticket => {
-            if (ticket.estado === 'Abierto') {
-                ticket.tiempo += 1;
-            }
-        });
-        mostrarTickets();
+      tickets.forEach(ticket => {
+        if (ticket.estado === 'Abierto') {
+          ticket.tiempo += 1;
+        }
+      });
+      mostrarTickets();
     }, 1000);
-</script>
+  </script>
 
 </body>
 </html>
-
