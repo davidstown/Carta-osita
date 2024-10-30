@@ -251,8 +251,17 @@
       tickets[index].estado = nuevoEstado;
       mostrarTickets();
     }
+
+    // Intervalo para actualizar el tiempo de espera cada segundo
+    setInterval(() => {
+      tickets.forEach(ticket => {
+        if (ticket.estado === 'Abierto') {
+          ticket.tiempo += 1;
+        }
+      });
+      mostrarTickets();
+    }, 1000);
   </script>
 </body>
 </html>
-
-    
+  
