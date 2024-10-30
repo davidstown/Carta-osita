@@ -147,9 +147,7 @@
 
   <script>
     (function(){
-      emailjs.init({
-        publicKey: "FI1vQRrXRKzliM5Sl" // Reemplaza con tu clave pública de EmailJS
-      });
+      emailjs.init("FI1vQRrXRKzliM5Sl"); // Reemplaza con tu clave pública de EmailJS
       console.log("EmailJS inicializado correctamente");
     })();
 
@@ -179,7 +177,7 @@
       tickets.push(ticket);
       mostrarTickets();
       enviarNotificacion(ticket);
-      enviarCorreo(ticket);
+      enviarCorreo(ticket); // Cambiado a enviarCorreo para asegurarse de que se envía
       ticketNumber++;
       document.getElementById('ticketForm').reset();
     }
@@ -220,6 +218,7 @@
     }
 
     function enviarCorreo(ticket) {
+      // Verificar que el correo sea válido
       if (!ticket.email || !/\S+@\S+\.\S+/.test(ticket.email)) {
           console.error("Correo electrónico no válido");
           return;
@@ -264,4 +263,3 @@
   </script>
 </body>
 </html>
-  
